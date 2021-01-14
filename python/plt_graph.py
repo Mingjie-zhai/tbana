@@ -24,6 +24,49 @@ t.SetTextAlign( 12 )
 mg = ROOT.TMultiGraph("mg","")
 
 
+volt = array('d')
+charge  = array('d') 
+
+for ii20 in [80., 160., 200., 220., 240., 250.]:
+    volt.append(ii20)
+
+
+for i1 in [22398., 32773., 52603., 69865., 102097., 143540]:
+    charge.append(i1)
+
+
+gr  = ROOT.TGraph(6, volt, charge )
+mg.Add(gr)
+mg.Draw('alp')
+
+mg.GetYaxis().SetTitle('charge')
+mg.GetYaxis().SetRangeUser(0, 150000)
+mg.GetXaxis().SetLimits(0, 300)
+
+gr.SetLineWidth(2)
+gr.SetLineColor(2)
+gr.SetLineStyle(1)
+gr.SetMarkerSize(2)
+gr.SetMarkerColor(2)
+gr.SetMarkerStyle(20)
+
+
+mg.GetXaxis().SetTitle('Bias voltage/V')
+mg.GetXaxis().SetTitleOffset(1.0)
+mg.GetYaxis().SetTitleOffset(1.0)
+mg.GetXaxis().SetTitleSize(0.05)
+mg.GetYaxis().SetTitleSize(0.05)
+mg.GetXaxis().SetLabelSize(0.05)
+mg.GetYaxis().SetLabelSize(0.05)
+mg.GetYaxis().SetNdivisions(505)
+mg.GetYaxis().SetNdivisions(505)
+
+
+figfile = 'charge.pdf'
+
+c.SaveAs(figfile)
+
+"""
 # 101  50  50
 # 102  90  70
 # 103 130  90
@@ -299,3 +342,4 @@ elif logdir in [['pulse']]:
     figfile = 'python/plots/amp.pdf'
 c.SetTicks(1,1)
 c.SaveAs(figfile)
+"""
